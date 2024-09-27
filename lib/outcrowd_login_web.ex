@@ -58,6 +58,15 @@ defmodule OutcrowdLoginWeb do
     end
   end
 
+  def main_layout do
+    quote do
+      use Phoenix.LiveView,
+        layout: {OutcrowdLoginWeb.Layouts, :main}
+
+      unquote(html_helpers())
+    end
+  end
+
   def live_component do
     quote do
       use Phoenix.LiveComponent

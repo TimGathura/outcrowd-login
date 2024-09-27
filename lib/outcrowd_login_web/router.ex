@@ -17,7 +17,7 @@ defmodule OutcrowdLoginWeb.Router do
   scope "/", OutcrowdLoginWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
+    live "/", OutcrowdLive
   end
 
   # Other scopes may use custom stacks.
