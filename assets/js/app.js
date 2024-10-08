@@ -22,6 +22,32 @@ import {Socket} from "phoenix"
 import {LiveSocket} from "phoenix_live_view"
 import topbar from "../vendor/topbar"
 
+document.addEventListener('mousemove', function (event) {
+  const eyeLeft = document.getElementById('eye-left').querySelector('::before');
+  const eyeRight = document.getElementById('eye-right').querySelector('::before');
+  
+  const eyes = [eyeLeft, eyeRight];
+
+  eyes.forEach(eye => {
+    const rect = eye.getBoundingClientRect(); // Get the current eye position
+    const eyeCenterX = rect.left + rect.width / 2; // Find the center of the eye horizontally
+    const eyeCenterY = rect.top + rect.height / 2; // Find the center vertically
+
+    // Calculate the angle of the eye's movement toward the cursor
+    const deltaX = event.clientX - eyeCenterX;
+    const deltaY = event.clientY - eyeCenterY;
+    const angle = Math.atan2(deltaY, deltaX);
+
+    // Move the pupil based on this angle, within the boundaries of the eye
+    const moveAmount = 5; // You can tweak this for more or less movement
+    const pupilX = Math.cos(angle) * moveAmount;
+    const pupilY = Math.sin(angle) * moveAmount;
+
+    eye.style.transform = `translate(${pupilX}px, ${pupilY}px)`;
+  });
+});
+
+
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
 let liveSocket = new LiveSocket("/live", Socket, {
   longPollFallbackMs: 2500,
@@ -41,4 +67,6 @@ liveSocket.connect()
 // >> liveSocket.enableLatencySim(1000)  // enabled for duration of browser session
 // >> liveSocket.disableLatencySim()
 window.liveSocket = liveSocket
+
+
 

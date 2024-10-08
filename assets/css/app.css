@@ -3,3 +3,52 @@
 @import "tailwindcss/utilities";
 
 /* This file is for your main application CSS */
+:root {
+    font-family: Inter, sans-serif;
+}
+
+.border-section {
+    border: double 5px brown;
+}
+
+.border-parent {
+    border: solid 2px blue;
+}
+
+.border-child {
+    border: solid 1px green;
+}
+
+.face {
+    width: 200px;
+    height: 100px;
+    background-color: #FBD38D; /* a light orange rectangle */
+    border-radius: 10px;
+    position: relative;
+    margin: 100px auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  
+  .eye {
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .eye::before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background-color: black;
+    border-radius: 50%;
+    position: absolute;
+    transition: all 0.1s ease-out; /* Smooth eye movement */
+  }
+  

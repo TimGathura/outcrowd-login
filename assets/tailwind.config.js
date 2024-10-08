@@ -14,8 +14,13 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        brand: "#FD4F00",
-      }
+        'main-white': '#FFFFFF', 
+        'dark-blue': '#101828',
+        'faded-gray': '#475467',
+        'tcs-green': '#085B53',
+        'stroke': '#EAECF0',
+        'placeholder-black' : '#111111',
+      },
     },
   },
   plugins: [
